@@ -1,0 +1,18 @@
+typestate FileServer {
+
+  Init = {
+    boolean start(): <true: Connected, false: end>
+  }
+
+  Connected = {
+    boolean hasRequest(): <true: Sending, false: end>
+  }
+
+  Sending = {
+    boolean sendFile(): <true: Sending, false: end>
+  }
+
+  Close = {
+    void close(): end
+  }
+}

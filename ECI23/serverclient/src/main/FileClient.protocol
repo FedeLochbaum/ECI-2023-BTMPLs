@@ -1,0 +1,15 @@
+typestate FileClient {
+
+  Init = {
+    boolean start(): <true: Connected, false: end>
+  }
+
+  Connected = {
+    FileClientStatus request(): Listening
+  }
+
+  Close = {
+    void close(): end
+  }
+
+}
