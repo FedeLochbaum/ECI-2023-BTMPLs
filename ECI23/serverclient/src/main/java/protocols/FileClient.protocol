@@ -10,7 +10,7 @@ typestate FileClient {
   }
 
   Requesting = {
-    boolean sendFileName(): <true: Receiving, false: Connected>
+    boolean hasNext(): <true: Receiving, false: Connected>
   }
 
   Receiving = {

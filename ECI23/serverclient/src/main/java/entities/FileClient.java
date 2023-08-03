@@ -23,17 +23,23 @@ public class FileClient {
 
   public void request(String filename) throws Exception {
     out.write("REQUEST\n".getBytes());
-    // String line = in.readLine(); // TODO: asi recibe data del server
-    // TODO
+    out.write((filename + "\n").getBytes());
   }
 
-  // TODO
+  public int nextByte() throws Exception {
+    this.lastByte = in.read();
+    return lastByte;
+  }
+
+  public boolean hasNext() {
+    return this.lastByte != 0;
+  }
 
   public void close() throws Exception {
+    out.write("CLOSE\n".getBytes());
     in.close();
     out.close();
     socket.close();
-    // TODO
   }
 
   public static void main(String[] args) throws Exception {
