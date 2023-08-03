@@ -50,10 +50,9 @@ public class FileClient {
       System.out.println("File client started!");
 
       client.request(fileName); // Makes the server request
-      int byteRead;
       while (client.hasNext()) {
-        byteRead = client.nextByte();
-        System.out.write(byteRead);
+        int byteRead = client.nextByte();
+        System.out.println((char)byteRead);
       }
 
       client.close();

@@ -1,7 +1,7 @@
 typestate FileServer {
 
   Init = {
-    boolean start(Socket): <true: Connected, false: end>
+    boolean start(Socket): <true: Connected, false: Close>
   }
 
   Connected = {
@@ -11,5 +11,9 @@ typestate FileServer {
 
   Sending = {
     void sendFile(): Connected
+  }
+
+  Close {
+    void close(): end
   }
 }

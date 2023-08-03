@@ -1,7 +1,7 @@
 typestate FileClient {
 
   Init = {
-    boolean start(): <true: Connected, false: end>
+    boolean start(): <true: Connected, false: Close>
   }
 
   Connected = {
@@ -16,5 +16,9 @@ typestate FileClient {
   Receiving = {
     boolean hasNext(): <true: Receiving, false: Connected>
     void nextByte(): Receiving
+  }
+
+  Close {
+    void close(): end
   }
 }

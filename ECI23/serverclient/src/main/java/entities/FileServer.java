@@ -36,9 +36,10 @@ public class FileServer {
         out.write(byteRead);
       }
     } catch (FileNotFoundException e) {
-      out.write(0);
+      out.write(0); // file not found
     }
-    out.write(0);
+
+    out.write(0); // end of file
     out.flush();
   }
 
