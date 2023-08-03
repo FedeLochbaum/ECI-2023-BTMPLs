@@ -12,8 +12,8 @@ public class FileClient {
   public boolean start() {
     try {
       socket = new Socket("localhost", 1234);
-      out = socket.getOutputStream();
-      in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+      out = socket.getOutputStream(); // to write
+      in = new BufferedReader(new InputStreamReader(socket.getInputStream())); // to read
       return true;
     } catch (Exception e) {
       e.printStackTrace();
@@ -23,12 +23,16 @@ public class FileClient {
 
   public void request(String filename) throws Exception {
     out.write("REQUEST\n".getBytes());
+    // String line = in.readLine(); // TODO: asi recibe data del server
     // TODO
   }
 
   // TODO
 
   public void close() throws Exception {
+    in.close();
+    out.close();
+    socket.close();
     // TODO
   }
 

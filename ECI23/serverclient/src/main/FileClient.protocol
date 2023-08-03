@@ -5,11 +5,16 @@ typestate FileClient {
   }
 
   Connected = {
-    FileClientStatus request(): Listening
-  }
-
-  Close = {
+    void request(String): Requesting
     void close(): end
   }
 
+  Requesting = {
+    boolean sendFileName(): <true: Receiving, false: Connected>
+  }
+
+  Receiving = {
+    boolean thereNext(): <true: Receiving, false: Connected>
+    void nextByte(): Receiving
+  }
 }

@@ -12,8 +12,8 @@ public class FileServer {
   public boolean start(Socket s) {
     try {
       socket = s;
-      out = socket.getOutputStream();
-      in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+      out = socket.getOutputStream(); // to write
+      in = new BufferedReader(new InputStreamReader(socket.getInputStream())); // to read
       return true;
     } catch (Exception e) {
       e.printStackTrace();
@@ -25,7 +25,15 @@ public class FileServer {
     String command = in.readLine();
     if (command != null && command.equals("REQUEST")) {
       // TODO
-
+      lastFilename = in.readLine();
+      try {
+        file = new FileReader(filename);
+        curr = file.read();
+        return Status.OK;
+      } catch (IOException exp) {
+        return Status.ERROR;
+      }
+      
       return true;
     }
     return false;
@@ -34,10 +42,13 @@ public class FileServer {
   // TODO
 
   public boolean sendFile() {
-    
+
   }
 
   public void close() throws Exception {
+    in.close();
+    out.close();
+    socket.close();
     // TODO
   }
 
