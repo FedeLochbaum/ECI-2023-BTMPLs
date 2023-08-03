@@ -44,12 +44,18 @@ public class FileClient {
   }
 
   public static void main(String[] args) throws Exception {
+    String fileName = "sarasa.txt";
     FileClient client = new FileClient();
     if (client.start()) {
       System.out.println("File client started!");
-      // FileServerThread serverThread = new FileServerThread(client.socket);
-      // serverThread.run();
-      // TODO
+
+      client.request(fileName); // Makes the server request
+      int byteRead;
+      while (client.hasNext()) {
+        byteRead = client.nextByte();
+        System.out.write(byteRead);
+      }
+
       client.close();
     } else {
       System.out.println("Could not start client!");
