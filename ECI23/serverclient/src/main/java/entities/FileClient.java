@@ -24,6 +24,7 @@ public class FileClient {
   public void request(String filename) throws Exception {
     out.write("REQUEST\n".getBytes());
     out.write((filename + "\n").getBytes());
+    out.flush();
   }
 
   public int nextByte() throws Exception {

@@ -5,16 +5,11 @@ typestate FileServer {
   }
 
   Connected = {
-    boolean hasRequest(): <true: Requested, false: Connected>
-    void close(): end;
-  }
-
-  Requested = {
-    boolean sendFile(String): <true: Sending, false: Connected>
+    boolean hasRequest(): <true: Sending, false: Connected>
     void close(): end;
   }
 
   Sending = {
-    boolean sendNextByte(): <true: Sending, false: Connected>
+    void sendFile(): Connected
   }
 }
