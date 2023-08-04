@@ -1,24 +1,19 @@
 typestate FileClient {
-
   Init = {
-    boolean start(): <true: Connected, false: Close>
+    boolean start(): <true: Connected, false: end>
   }
-
   Connected = {
-    void request(String): Requesting
+    void request(String): Requesting,
     void close(): end
   }
-
   Requesting = {
     boolean hasNext(): <true: Receiving, false: Connected>
   }
-
   Receiving = {
-    boolean hasNext(): <true: Receiving, false: Connected>
+    boolean hasNext(): <true: Receiving, false: Connected>,
     void nextByte(): Receiving
   }
-
-  Close {
+  Close = {
     void close(): end
   }
 }

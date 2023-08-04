@@ -1,20 +1,18 @@
 typestate FileServer {
-
   Init = {
-    boolean start(Socket): <true: Connected, false: Close>
+    boolean start(Socket): <true: Connected, false: end>
   }
-
   Connected = {
-    boolean hasRequest(): <true: Sending, false: Connected>
-    boolean isClosed(): <true: Close, false: Connected>
-    void close(): end;
+    boolean hasRequest(): <true: Sending, false: Connected>,
+    boolean isClosed(): <true: Close, false: Connected>,
+    void close(): end
   }
 
   Sending = {
     void sendFile(): Connected
   }
 
-  Close {
+  Close = {
     void close(): end
   }
 }
