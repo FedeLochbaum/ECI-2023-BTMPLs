@@ -3,17 +3,19 @@ import java.net.*;
 public class FileServerThread extends Thread {
   private Socket socket;
 
-  public FileServerThread(Socket socket) {
-    this.socket = socket;
-  }
+  public FileServerThread(Socket socket) { this.socket = socket; }
 
-  public void run(String path_name) {
+  public void run() {
     try {
       FileServer server = new FileServer();
       if (server.start(socket)) {
         System.out.println("File server started!");
-        
-        while (server.hasRequest()) { server.sendFile(); }
+
+        while (!server.isClosed()) {
+          if (server.hasRequest()) {
+            server.sendFile();
+          }
+        }
         
         server.close();
       } else {

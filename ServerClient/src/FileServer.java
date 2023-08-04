@@ -1,6 +1,8 @@
-import java.net.*;
-import java.io.*;
 import jatyc.lib.Typestate;
+
+import java.io.*;
+import java.net.ServerSocket;
+import java.net.Socket;
 
 @Typestate("FileServer")
 public class FileServer {
@@ -8,6 +10,7 @@ public class FileServer {
   protected OutputStream out;
   protected BufferedReader in;
   protected String lastFilename;
+  protected String lastCommand;
 
   public boolean start(Socket s) {
     try {
@@ -24,8 +27,11 @@ public class FileServer {
   public boolean hasRequest() throws Exception {
     String command = in.readLine();
     this.lastFilename = in.readLine();
-    return command != null && command.equals("REQUEST");
+    this.lastCommand = command;
+    return command != null && command.equals("REQUEST\n");
   }
+
+  public boolean isClosed() { return this.lastCommand.equals("CLOSE\n"); }
   
   public void sendFile() throws Exception {
     File file = new File(this.lastFilename);
@@ -52,7 +58,7 @@ public class FileServer {
   public static void main(String[] args) throws Exception {
     ServerSocket serverSocket = new ServerSocket(1234);
     while (true) {
-      new FileServerThread(serverSocket.accept()).start();
+      new FileServerThread(serverSocket.accept()).run();
     }
   }
 }

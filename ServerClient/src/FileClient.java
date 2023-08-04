@@ -1,6 +1,9 @@
-import java.net.*;
-import java.io.*;
 import jatyc.lib.Typestate;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.Socket;
 
 @Typestate("FileClient")
 public class FileClient {
@@ -52,7 +55,7 @@ public class FileClient {
       client.request(fileName); // Makes the server request
       while (client.hasNext()) {
         int byteRead = client.nextByte();
-        System.out.println((char)byteRead);
+        System.out.println((char) byteRead);
       }
 
       client.close();

@@ -6,6 +6,7 @@ typestate FileServer {
 
   Connected = {
     boolean hasRequest(): <true: Sending, false: Connected>
+    boolean isClosed(): <true: Close, false: Connected>
     void close(): end;
   }
 
