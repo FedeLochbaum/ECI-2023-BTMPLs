@@ -7,5 +7,41 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../../../java-typestate-checker/dist/checker" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../../../java-typestate-checker/dist/checker" />
+        </SOURCES>
+        <jarDirectory url="file://$MODULE_DIR$/../../../java-typestate-checker/dist/checker" recursive="false" />
+        <jarDirectory url="file://$MODULE_DIR$/../../../java-typestate-checker/dist/checker" recursive="false" type="SOURCES" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../../../java-typestate-checker/dist/checker" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../../../java-typestate-checker/dist/checker" />
+        </SOURCES>
+        <jarDirectory url="file://$MODULE_DIR$/../../../java-typestate-checker/dist/checker" recursive="false" />
+        <jarDirectory url="file://$MODULE_DIR$/../../../java-typestate-checker/dist/checker" recursive="false" type="SOURCES" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../../../java-typestate-checker/dist" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/../../../java-typestate-checker/dist" recursive="false" />
+      </library>
+    </orderEntry>
   </component>
 </module>

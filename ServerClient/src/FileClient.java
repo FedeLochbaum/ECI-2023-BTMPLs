@@ -10,7 +10,7 @@ public class FileClient {
   private Socket socket;
   protected OutputStream out;
   protected BufferedReader in;
-  protected int lastByte;
+  protected int lastByte = -1;
 
   public boolean start() {
     try {
@@ -32,22 +32,21 @@ public class FileClient {
 
   public int nextByte() throws Exception {
     this.lastByte = in.read();
-    return lastByte;
+    return this.lastByte;
   }
 
-  public boolean hasNext() {
-    return this.lastByte != 0;
-  }
+  public boolean hasNext() { return this.lastByte != 0; }
 
   public void close() throws Exception {
     out.write("CLOSE\n".getBytes());
+    out.flush();
     in.close();
     out.close();
     socket.close();
   }
 
   public static void main(String[] args) throws Exception {
-    String fileName = "sarasa.txt";
+    String fileName = "/Users/Fede/Documents/GitHub/ECI-2023-BTMPLs/ServerClient/src/sarasa.txt";
     FileClient client = new FileClient();
     if (client.start()) {
       System.out.println("File client started!");

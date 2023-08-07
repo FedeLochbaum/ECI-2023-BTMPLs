@@ -26,17 +26,21 @@ public class FileServer {
 
   public boolean hasRequest() throws Exception {
     String command = in.readLine();
-    this.lastFilename = in.readLine();
-    this.lastCommand = command;
-    return command != null && command.equals("REQUEST\n");
+    if (command != null) {
+      this.lastCommand = command;
+      this.lastFilename = in.readLine();
+    }
+    return command != null && command.equals("REQUEST");
   }
 
-  public boolean isClosed() { return this.lastCommand.equals("CLOSE\n"); }
+  public boolean isClosed() {
+    return this.lastCommand != null && this.lastCommand.equals("CLOSE");
+  }
   
   public void sendFile() throws Exception {
-    File file = new File(this.lastFilename);
 
-    try (FileInputStream fileInputStream = new FileInputStream(file)) {
+    File path = new File(this.lastFilename);
+    try (FileInputStream fileInputStream = new FileInputStream(path)) {
       int byteRead;
       while ((byteRead = fileInputStream.read()) != -1) {
         out.write(byteRead);
