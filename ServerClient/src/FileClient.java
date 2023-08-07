@@ -53,8 +53,7 @@ public class FileClient {
 
       client.request(fileName); // Makes the server request
       while (client.hasNext()) {
-        int byteRead = client.nextByte();
-        System.out.println((char) byteRead);
+        System.out.println((char) client.nextByte());
       }
 
       client.close();
