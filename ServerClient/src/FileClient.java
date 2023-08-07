@@ -46,7 +46,7 @@ public class FileClient {
   }
 
   public static void main(String[] args) throws Exception {
-    String fileName = "/Users/Fede/Documents/GitHub/ECI-2023-BTMPLs/ServerClient/src/sarasa.txt";
+    String fileName = "sarasa.txt";
     FileClient client = new FileClient();
     if (client.start()) {
       System.out.println("File client started!");

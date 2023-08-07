@@ -38,8 +38,8 @@ public class FileServer {
   }
   
   public void sendFile() throws Exception {
-
-    File path = new File(this.lastFilename);
+    File root = new File(Thread.currentThread().getContextClassLoader().getResource("").toURI());
+    File path = new File(root, this.lastFilename);
     try (FileInputStream fileInputStream = new FileInputStream(path)) {
       int byteRead;
       while ((byteRead = fileInputStream.read()) != -1) {
